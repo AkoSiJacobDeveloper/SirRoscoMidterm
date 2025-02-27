@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twisted Cipher</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <h2>Twisted Cipher Encryption</h2>
+
+        <input type="text" id="userInput" placeholder="Enter text here">
+        <br>
+        <div class="btn-container">
+            <button onclick="encryptText()">Encrypt</button>
+            <button onclick="decryptText()">Decrypt</button>
+        </div>
+       
+        <p id="result">Result: </p>
+    </div>
+    
+    <script>
+        const shiftPattern = [1, 3, 2, 4]; 
+        let lastEncrypted = ""; 
+
+        function encryptTwistedCipher(message, shiftPattern) {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let encryptedMessage = "";
+            let patternIndex = 0;
+
+            for (let char of message.toUpperCase()) {
+                if (alphabet.includes(char)) {
+                    let shift = shiftPattern[patternIndex % shiftPattern.length];
+                    let oldIndex = alphabet.indexOf(char);
+                    let newIndex = (oldIndex + shift) % 26;
+                    encryptedMessage += alphabet[newIndex];
+                    patternIndex++;
+                } else {
+                    encryptedMessage += char;
+                }
+            }
+            return encryptedMessage;
+        }
+
+        function decryptTwistedCipher(encryptedMessage, shiftPattern) {
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let decryptedMessage = "";
+            let patternIndex = 0;
+
+            for (let char of encryptedMessage.toUpperCase()) {
+                if (alphabet.includes(char)) {
+                    let shift = shiftPattern[patternIndex % shiftPattern.length];
+                    let oldIndex = alphabet.indexOf(char);
+                    let newIndex = (oldIndex - shift + 26) % 26;
+                    decryptedMessage += alphabet[newIndex];
+                    patternIndex++;
+                } else {
+                    decryptedMessage += char;
+                }
+            }
+            return decryptedMessage;
+        }
+
+        function encryptText() {
+            let inputText = document.getElementById("userInput").value;
+            lastEncrypted = encryptTwistedCipher(inputText, shiftPattern);
+            document.getElementById("result").innerText = "Encrypted: " + lastEncrypted;
+        }
+
+        function decryptText() {
+            if (lastEncrypted === "") {
+                document.getElementById("result").innerText = "No encrypted text found!";
+                return;
+            }
+            let decrypted = decryptTwistedCipher(lastEncrypted, shiftPattern);
+            document.getElementById("result").innerText = "Decrypted: " + decrypted;
+        }
+    </script>
+</body>
+</html>
