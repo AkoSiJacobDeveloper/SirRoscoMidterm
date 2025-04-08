@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Russo+One&display=swap');
 
 * {
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
     margin: 0px;
     box-sizing: border-box;
 }
@@ -10,40 +10,88 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     text-align: center;
+    padding: 20px;
+    flex-direction: column;
 }
 
 h2 {
-    margin: 20px ;
+    margin: 20px;
+    font-size: 1.5rem;
 }
 
 .main-container {
-    border: 1px solid black;
     padding: 25px;
-    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
 }
+
 input {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
 }
 
 .btn-container {
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 
 button {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    width: 50%;
+    width: 100%;
     margin: 10px 0px;
+    border: none;
+    background-color: #4a6fa5;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
+
+button:hover {
+    background-color: #3a5a8a;
+}
+
 #result {
-    margin-top: 20px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.encryption-container, .info-container {
+    width: 100%; 
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 8px;
+}
+
+.info-container p {
+    font-size: 0.9em;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+    .encryption-container, .info-container {
+        width: 48%;
+    }
+    
+    .main-container {
+        flex-wrap: nowrap;
+    }
 }
